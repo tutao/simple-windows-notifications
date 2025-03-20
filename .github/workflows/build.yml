@@ -33,7 +33,7 @@ jobs:
   publish:
     name: Publish
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     needs: prebuild
 
@@ -51,6 +51,7 @@ jobs:
         with:
           pattern: prebuilds
           path: prebuilds
+          merge-multiple: true
 
       - name: Install node_modules
         run: npm ci
