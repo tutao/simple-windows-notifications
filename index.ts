@@ -1,4 +1,4 @@
-import loadBinding from 'bindings';
+import { loadBindings } from './loadBindings';
 
 type BindingType = Readonly<{
   showNotification(
@@ -15,19 +15,7 @@ type BindingType = Readonly<{
 
 let binding: BindingType | undefined;
 if (process.platform === 'win32') {
-  binding = loadBinding({
-    bindings: 'simple-windows-notifications',
-    try: [
-      [
-        'module_root',
-        'prebuilds',
-        `${process.platform}-${process.arch}`,
-        '@indutny+simple-windows-notifications.node',
-      ],
-      ['module_root', 'build', 'Release', 'bindings'],
-      ['module_root', 'build', 'Debug', 'bindings'],
-    ],
-  });
+  loadBindings(import.meta.url, 'simple-windows-notifications');
 }
 
 /**
@@ -77,7 +65,8 @@ export class Notifier {
    * @constructor
    * @param appId - Application id, typically: 'org.nodejs.node'
    */
-  constructor(private readonly appId: string) {}
+  constructor(private readonly appId: string) {
+  }
 
   /**
    * Show a notification with a given toast XML.
