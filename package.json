@@ -4,11 +4,15 @@
   "description": "Simple Windows Notifications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "module": "dist/esm/index.js",
+  "module": "dist/index.js",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "default": "./dist/index.js"
+  },
   "scripts": {
     "watch": "npm run build:esm -- --watch",
     "build": "npm run build:esm",
-    "build:esm": "tsc --module es2020 --declaration false --outDir dist/esm",
+    "build:esm": "tsc --module es2020 --outDir dist",
     "build:docs": "typedoc index.ts --includeVersion",
     "test": "ava test/*.ts",
     "format": "prettier --cache --write .",
