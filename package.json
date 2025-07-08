@@ -5,15 +5,6 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/esm/index.js",
-  "files": [
-    "prebuilds",
-    "dist",
-    "!dist/tsconfig.tsbuildinfo",
-    "!dist/esm/tsconfig.tsbuildinfo",
-    "!dist/test",
-    "!dist/esm/test",
-    "README.md"
-  ],
   "scripts": {
     "watch": "npm run build:cjs -- --watch",
     "build": "npm run build:cjs && npm run build:esm",
