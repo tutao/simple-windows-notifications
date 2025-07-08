@@ -6,9 +6,8 @@
   "types": "dist/index.d.ts",
   "module": "dist/esm/index.js",
   "scripts": {
-    "watch": "npm run build:cjs -- --watch",
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc",
+    "watch": "npm run build:esm -- --watch",
+    "build": "npm run build:esm",
     "build:esm": "tsc --module es2020 --declaration false --outDir dist/esm",
     "build:docs": "typedoc index.ts --includeVersion",
     "test": "ava test/*.ts",
@@ -17,6 +16,7 @@
     "check:eslint": "eslint --cache .",
     "check:format": "prettier --cache --check .",
     "clean": "rm -rf dist",
+    "prepare": "npm run build",
     "install": "echo simple-windows notification has not been installed but 'node-gyp rebuild' has not been run"
   },
   "repository": {
