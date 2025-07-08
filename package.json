@@ -16,9 +16,8 @@
     "lint": "npm run check:eslint && npm run check:format",
     "check:eslint": "eslint --cache .",
     "check:format": "prettier --cache --check .",
-    "prebuildify": "prebuildify --strip --napi",
-    "prepublishOnly": "npm run clean && npm run build && npm run lint",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "install": "echo simple-windows notification has not been installed but 'node-gyp rebuild' has not been run"
   },
   "repository": {
     "type": "git",
