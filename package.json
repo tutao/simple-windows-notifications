@@ -21,7 +21,7 @@
     "check:format": "prettier --cache --check .",
     "clean": "rm -rf dist",
     "prepare": "npm run build",
-    "install": "echo simple-windows notification has not been installed but 'node-gyp rebuild' has not been run"
+    "install": "echo 'simple-windows notification has been installed but `node-gyp rebuild` has not been run' && tsc --showConfig"
   },
   "repository": {
     "type": "git",
