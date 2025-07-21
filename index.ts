@@ -13,9 +13,9 @@ type BindingType = Readonly<{
   sendDummyKeystroke(): void;
 }>;
 
-let binding: BindingType | undefined;
+let bindings: BindingType | undefined;
 if (process.platform === 'win32') {
-  loadBindings(import.meta.url, 'simple-windows-notifications');
+  bindings = loadBindings(import.meta.url, 'simple-windows-notifications');
 }
 
 /**
@@ -78,10 +78,10 @@ export class Notifier {
     toastXml: string,
     { tag, group, expiresOnReboot = false }: ShowNotificationOptionsType,
   ) {
-    if (!binding) {
+    if (!bindings) {
       throw new Error('This library works only on Windows');
     }
-    binding.showNotification(this.appId, toastXml, tag, group, expiresOnReboot);
+    bindings.showNotification(this.appId, toastXml, tag, group, expiresOnReboot);
   }
 
   /**
@@ -91,20 +91,20 @@ export class Notifier {
    * @param options - Notification data use to identify the notification.
    */
   public remove({ tag, group }: RemoveNotificationOptionsType): void {
-    if (!binding) {
+    if (!bindings) {
       throw new Error('This library works only on Windows');
     }
-    binding.removeNotification(this.appId, tag, group);
+    bindings.removeNotification(this.appId, tag, group);
   }
 
   /**
    * Remove all notifications sent by this app.
    */
   public clearAll(): void {
-    if (!binding) {
+    if (!bindings) {
       throw new Error('This library works only on Windows');
     }
-    binding.clearHistory(this.appId);
+    bindings.clearHistory(this.appId);
   }
 }
 
@@ -117,8 +117,8 @@ export class Notifier {
  * See: https://www.npmjs.com/package/windows-dummy-keystroke#but-why
  */
 export function sendDummyKeystroke() {
-  if (!binding) {
+  if (!bindings) {
     throw new Error('This library works only on Windows');
   }
-  binding.sendDummyKeystroke();
+  bindings.sendDummyKeystroke();
 }
